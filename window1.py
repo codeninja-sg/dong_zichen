@@ -30,4 +30,13 @@ click_btn.pack(pady=5)
 counter_label = tk.Label(root, text="Clicks: 0")
 counter_label.pack()
 
+def reset_all():
+    name_entry.delete(0, tk.END)
+    title_lable.config(text="Hello, tkinker!")
+    clicks.set(0)
+    counter_label.config(text="Clicks: 0")
+
+reset_btn = tk.Button(root, text="Reset", command=reset_all)
+reset_btn.pack(pady=10)
+
 root.mainloop()
