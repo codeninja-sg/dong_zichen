@@ -3,24 +3,35 @@ import random
 
 
 root = tk.Tk()
+
 root.title("Guess the Number")
 root.geometry("400x300")
 
 secret = random.randint(1, 100)
-def 
+def check_guess():
+    text = guess_entry.get().strip()
 
-title_label = tk.Label(root, text="Guess the number!", font=("Arial", 18))
+    if not text.isdigit():
+        result_label.config(text="pls enter a number!")
+        return
+    
+    guess =  int(text)
 
-title_label.pack(pady=10)
+    if guess < secret:
+        result_label.config(text="too low!")
+    elif guess > secret:
+        result_label.config(text="too high!")
+    else:
+        result_label.config(text=f"you got it! The number is {secret}.")
 
-prompt_label.pack
-prompt_label = tk.Label(root, text="Enter a number (1-100)")
+check_btn =tk.Button(root, text="check", command=check_guess)
+check_btn.pack(pady=5)
 
-guess_entry = tk.Entry(root, width=10, justify="center")
-guess_entry.pack(pady=5)
+def reset_game():
+    global secret
+    secret = random.randint(1, 100)
+    result_label.config(text="New game! Guess again.")
+    guess_entry.delete(0, tk.END)
 
-result_label = tk.Label(root, text="good luck!", font=("Arial", 14))
-result_label.pack(pady=10)
-
-
-root.mainloop()
+reset_btn = tk.Button(root, text="reset", command=reset_game)
+reset_btn.pack(pady=5)
