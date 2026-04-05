@@ -32,7 +32,21 @@ def game_loop():
     global snake, food
     
     head_x, head_y = snake[0]
+
+    max_x = W // SIZE
+    max_y = H // SIZE
     new_head = (head_x + dx, head_y + dy)
+
+    if new_head[0] < 0 or new_head[0] >= max_x or new_head[1] < 0 or new_head[1] >= max_y:
+        print("hit")
+
+    if new_head in snake:
+        print("bite")
+
+    game_over = False
+
+    game_over = True
+    status_label.config()
 
     snake.insert(0, new_head)
     if new_head == food:
@@ -67,6 +81,8 @@ root.bind("<Up>", up)
 root.bind("<Down>", down)
 root.bind("<Left>", left)
 root.bind("<Right>", right)
+
+
 
 # restart_btn = tk.Button(root, text="Restart",command=restart)
 # restart_btn.pack(pady=5)
