@@ -43,10 +43,10 @@ def game_loop():
     if new_head in snake:
         print("bite")
 
-    game_over = False
+    # game_over = False
 
-    game_over = True
-    status_label.config()
+    # game_over = True
+    # status_label.config()
 
     snake.insert(0, new_head)
     if new_head == food:
