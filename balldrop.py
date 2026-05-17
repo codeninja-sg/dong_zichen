@@ -47,6 +47,22 @@ def move_right(event):
 
     score_label = tk.Label(root, text='Score: 0',font=('Arial', 14),bg = 'black', fg='white')
 
+    score_label.pack()
+
+def game_loop():
+    global ball_x, ball_y, ball_dx, ball_dy, ball_r, score, game_over
+
+    if game_over:
+        return
+    
+    ball_x += ball_dx
+    ball_y += ball_dy
+
+    if ball_x - ball_r <= 0 or ball_x + ball_r >= W:
+        ball_dx = -ball_dx
+
+    if ball_y - ball_r <= 0:
+        
 
 
 root.bind('<Left>',move_left)
