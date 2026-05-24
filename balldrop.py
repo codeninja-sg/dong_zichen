@@ -62,8 +62,16 @@ def game_loop():
         ball_dx = -ball_dx
 
     if ball_y - ball_r <= 0:
-        
+        ball_dy = -ball_dy
 
+    pad_left  = pad_x - pad_w//2
+    pad_right = pad_x + pad_w//2
+    pad_top   = pad_y - pad_h//2
+
+    if (ball_y + ball_r >= pad_top and ball_y + ball_r <= pad_top +10 and pad_left <= ball_x <= pad_right):
+        ball_dy = -abs(ball_dy)
+        score += 1
+        score_label.config
 
 root.bind('<Left>',move_left)
 root.bind('<Right>',move_right)
