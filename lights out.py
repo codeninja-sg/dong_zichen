@@ -17,9 +17,17 @@ grid = [[0]*COLS for _ in range(ROWS)]
 grid = [[0] * COLS for _ in range(ROWS)]
 buttons = []
 
+def make_handler(r, c):
+    def handler():
+            on_click(r, c)
+    return handler
+
+status_label = tk.Label(root, text= 'Turn all lights off!', font=('Arial',14))
+status_label.grid(row=ROWS, columnspan=COLS, pady=10)
+
 for r in range(ROWS):
     for c in range(COLS):
-        btn = tk.Button(root, width=6, height=3, bg='grey20')
+        btn = tk.Button(root, width=6, height=3, bg='grey20',command= make_handler(r, c))
         btn.grid(row=r, column=c, padx=2, pady=2)
         buttons.append(btn)
 
@@ -32,6 +40,13 @@ def toggle_cell(r, c):
             colour = 'grey20'
         buttons[r * COLS + c].config(bg=colour)
 
+def check_win():
+    for row in grid:
+        for cell in row:
+            if cell == 1:
+                return
+    status_label.config(text='You win! All lights are off! :)')
+
 def on_click(r ,c):
     toggle_cell(r,    c)
     toggle_cell(r  -1,    c)
@@ -39,5 +54,10 @@ def on_click(r ,c):
     toggle_cell(r,    c -1)
     toggle_cell(r,    c +1)
     check_win()
+
+btn = tk.Button(root, command=on_click(r, c))
+
+    
+
 
 root.mainloop()
