@@ -57,7 +57,14 @@ def on_click(r ,c):
 
 btn = tk.Button(root, command=on_click(r, c))
 
-    
+def shuffle_board(clicks=10):
+    for _ in range(clicks):
+        r = random.randint(0, ROWS - 1)
+        c = random.randint(0, COLS - 1)
+        on_click(r, c)
 
+
+shuffle_board(3)
+root.mainloop
 
 root.mainloop()
