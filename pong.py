@@ -23,4 +23,10 @@ p1 = canvas.create_rectangle(PAD_OFF,   p1_y - PAD_H//2,PAD_OFF + PAD_W,   p1_y 
 p2_y = H // 2
 p2 = canvas.create_rectangle(W - PAD_OFF - PAD_W,  p2_y - PAD_H//2,W - PAD_OFF,   p2_y + PAD_H//2,fill='orange', outline='')
 
+BALL_R = 8
+ball_x = W // 2
+ball_y = H // 2
+ball_dx = random.choice([-4, 4])
+ball_dy = random.choice([-3, 3])
+
 root.mainloop()
